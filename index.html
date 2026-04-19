@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Mastery Hub — Competency Assessment & Learning Pathways</title>
+    <meta name="description" content="Assess your AI competency, explore courses, prepare for Claude Certified Architect, and master concepts like MCP, LangChain, and Model Drift.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-grid"></div>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+
+    <!-- Navigation -->
+    <nav id="main-nav">
+        <div class="nav-inner">
+            <a href="#hero" class="nav-logo">
+                <span class="logo-icon">🧠</span>
+                <span class="logo-text">AI Mastery Hub</span>
+            </a>
+            <div class="nav-links">
+                <a href="#assessment" class="nav-link">Assessment</a>
+                <a href="#claude-architect" class="nav-link">Claude Architect</a>
+                <a href="#practice-exams" class="nav-link">Practice Exams</a>
+                <a href="#concepts" class="nav-link">Key Concepts</a>
+                <a href="#resources" class="nav-link">Resources</a>
+            </div>
+            <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <div class="mobile-nav" id="mobile-nav">
+            <a href="#assessment" class="nav-link">Assessment</a>
+            <a href="#claude-architect" class="nav-link">Claude Architect</a>
+            <a href="#practice-exams" class="nav-link">Practice Exams</a>
+            <a href="#concepts" class="nav-link">Key Concepts</a>
+            <a href="#resources" class="nav-link">Resources</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="container">
+            <div class="hero-badge">✨ Your AI Journey Starts Here</div>
+            <h1 class="hero-title">
+                Measure Your <span class="gradient-text">AI Competency</span><br>
+                Chart Your <span class="gradient-text-alt">Learning Path</span>
+            </h1>
+            <p class="hero-subtitle">
+                Take our comprehensive assessment to discover your AI skill level, get personalized course recommendations, 
+                and prepare for certifications like the Claude Certified Architect.
+            </p>
+            <div class="hero-actions">
+                <a href="#assessment" class="btn btn-primary btn-glow" id="start-assessment-btn">
+                    <span>🎯</span> Start Assessment
+                </a>
+                <a href="#concepts" class="btn btn-secondary" id="explore-concepts-btn">
+                    <span>📚</span> Explore Concepts
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number" data-target="25">0</span>
+                    <span class="stat-label">Assessment Questions</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="8">0</span>
+                    <span class="stat-label">Key Concepts</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="2">0</span>
+                    <span class="stat-label">Practice Exams</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="50">0</span>+
+                    <span class="stat-label">Resources</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Competency Assessment -->
+    <section id="assessment" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">📊 Assessment</span>
+                <h2 class="section-title">AI Competency <span class="gradient-text">Check</span></h2>
+                <p class="section-subtitle">Answer these questions to gauge your current AI knowledge level and receive personalized recommendations.</p>
+            </div>
+
+            <div class="assessment-container" id="assessment-container">
+                <!-- Progress bar -->
+                <div class="quiz-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="quiz-progress-fill"></div>
+                    </div>
+                    <span class="progress-text" id="quiz-progress-text">Question 1 of 15</span>
+                </div>
+
+                <!-- Quiz question area -->
+                <div class="quiz-card" id="quiz-card">
+                    <div class="quiz-category" id="quiz-category">General AI</div>
+                    <h3 class="quiz-question" id="quiz-question"></h3>
+                    <div class="quiz-options" id="quiz-options"></div>
+                    <div class="quiz-nav">
+                        <button class="btn btn-secondary" id="quiz-prev-btn" disabled>← Previous</button>
+                        <button class="btn btn-primary" id="quiz-next-btn">Next →</button>
+                    </div>
+                </div>
+
+                <!-- Results area (hidden initially) -->
+                <div class="quiz-results hidden" id="quiz-results">
+                    <div class="results-score-ring">
+                        <svg viewBox="0 0 120 120">
+                            <circle cx="60" cy="60" r="54" class="ring-bg"></circle>
+                            <circle cx="60" cy="60" r="54" class="ring-fill" id="score-ring"></circle>
+                        </svg>
+                        <div class="score-text">
+                            <span class="score-number" id="score-number">0</span>
+                            <span class="score-percent">%</span>
+                        </div>
+                    </div>
+                    <h3 class="results-level" id="results-level"></h3>
+                    <p class="results-description" id="results-description"></p>
+                    
+                    <div class="results-breakdown" id="results-breakdown"></div>
+                    
+                    <h4 class="recommendations-title">🎓 Recommended for You</h4>
+                    <div class="recommendations-grid" id="recommendations-grid"></div>
+                    
+                    <button class="btn btn-primary btn-glow" id="retake-quiz-btn" style="margin-top: 2rem;">
+                        🔄 Retake Assessment
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Claude Certified Architect -->
+    <section id="claude-architect" class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">🏆 Certification</span>
+                <h2 class="section-title">Claude Certified <span class="gradient-text-alt">Architect</span></h2>
+                <p class="section-subtitle">Master Anthropic's Claude ecosystem and earn the prestigious Claude Certified Architect credential.</p>
+            </div>
+
+            <div class="architect-hero-card">
+                <div class="architect-badge-display">
+                    <div class="badge-glow"></div>
+                    <div class="badge-icon">🏗️</div>
+                    <h3>Claude Certified Architect</h3>
+                    <p class="badge-tier">Professional Certification</p>
+                </div>
+                <div class="architect-info">
+                    <h3>What is the Claude Certified Architect?</h3>
+                    <p>
+                        The Claude Certified Architect certification validates your expertise in designing, building, and deploying 
+                        production-grade systems powered by Anthropic's Claude models. It covers prompt engineering, system design, 
+                        safety practices, tool use, and advanced capabilities like MCP integration.
+                    </p>
+                    <div class="architect-meta">
+                        <div class="meta-item">
+                            <span class="meta-icon">⏱️</span>
+                            <span>2-hour exam</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-icon">📝</span>
+                            <span>60 questions</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-icon">🎯</span>
+                            <span>75% passing score</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-icon">📅</span>
+                            <span>Valid 2 years</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="architect-domains">
+                <h3 class="domains-title">Exam Domains</h3>
+                <div class="domains-grid">
+                    <div class="domain-card">
+                        <div class="domain-header">
+                            <span class="domain-icon">💬</span>
+                            <span class="domain-weight">25%</span>
+                        </div>
+                        <h4>Prompt Engineering</h4>
+                        <ul>
+                            <li>System prompts & instruction design</li>
+                            <li>Few-shot & chain-of-thought prompting</li>
+                            <li>Output formatting & structured responses</li>
+                            <li>Prompt optimization & evaluation</li>
+                        </ul>
+                    </div>
+                    <div class="domain-card">
+                        <div class="domain-header">
+                            <span class="domain-icon">🔧</span>
+                            <span class="domain-weight">20%</span>
+                        </div>
+                        <h4>Tool Use & MCP</h4>
+                        <ul>
+                            <li>Model Context Protocol architecture</li>
+                            <li>Tool definition & function calling</li>
+                            <li>Multi-tool orchestration</li>
+                            <li>MCP server implementation</li>
+                        </ul>
+                    </div>
+                    <div class="domain-card">
+                        <div class="domain-header">
+                            <span class="domain-icon">🏗️</span>
+                            <span class="domain-weight">20%</span>
+                        </div>
+                        <h4>System Architecture</h4>
+                        <ul>
+                            <li>API integration patterns</li>
+                            <li>Streaming & batch processing</li>
+                            <li>Multi-model orchestration</li>
+                            <li>Scalability & performance</li>
+                        </ul>
+                    </div>
+                    <div class="domain-card">
+                        <div class="domain-header">
+                            <span class="domain-icon">🛡️</span>
+                            <span class="domain-weight">20%</span>
+                        </div>
+                        <h4>Safety & Alignment</h4>
+                        <ul>
+                            <li>Constitutional AI principles</li>
+                            <li>Content filtering & guardrails</li>
+                            <li>Red teaming & adversarial testing</li>
+                            <li>Responsible AI deployment</li>
+                        </ul>
+                    </div>
+                    <div class="domain-card">
+                        <div class="domain-header">
+                            <span class="domain-icon">📊</span>
+                            <span class="domain-weight">15%</span>
+                        </div>
+                        <h4>Evaluation & Monitoring</h4>
+                        <ul>
+                            <li>LLM evaluation metrics</li>
+                            <li>A/B testing prompts</li>
+                            <li>Production monitoring</li>
+                            <li>Model drift detection</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="study-plan">
+                <h3 class="domains-title">📖 Recommended Study Plan</h3>
+                <div class="study-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">Week 1-2</div>
+                        <div class="timeline-content">
+                            <h4>Foundation</h4>
+                            <p>Master Claude API basics, prompt engineering fundamentals, and Anthropic's documentation.</p>
+                            <div class="timeline-resources">
+                                <a href="https://docs.anthropic.com" target="_blank" class="resource-link">📄 Anthropic Docs</a>
+                                <a href="https://www.youtube.com/watch?v=jvqFAi7vkBc" target="_blank" class="resource-link">▶️ Claude API Tutorial</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">Week 3-4</div>
+                        <div class="timeline-content">
+                            <h4>Intermediate Skills</h4>
+                            <p>Learn tool use, function calling, MCP protocol, and structured output generation.</p>
+                            <div class="timeline-resources">
+                                <a href="https://modelcontextprotocol.io" target="_blank" class="resource-link">📄 MCP Spec</a>
+                                <a href="https://www.youtube.com/watch?v=kQHKOhJlSCg" target="_blank" class="resource-link">▶️ MCP Deep Dive</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">Week 5-6</div>
+                        <div class="timeline-content">
+                            <h4>Advanced Architecture</h4>
+                            <p>Design multi-agent systems, implement safety guardrails, and build production deployments.</p>
+                            <div class="timeline-resources">
+                                <a href="https://www.youtube.com/watch?v=TRjq7t2Ms5I" target="_blank" class="resource-link">▶️ AI Agents Architecture</a>
+                                <a href="https://github.com/anthropics/courses" target="_blank" class="resource-link">📄 Anthropic Courses</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">Week 7-8</div>
+                        <div class="timeline-content">
+                            <h4>Exam Preparation</h4>
+                            <p>Take practice exams, review weak areas, and do hands-on projects with Claude.</p>
+                            <div class="timeline-resources">
+                                <a href="#practice-exams" class="resource-link">📝 Practice Exams Below</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Practice Exams -->
+    <section id="practice-exams" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">📝 Practice</span>
+                <h2 class="section-title">Practice <span class="gradient-text">Exams</span></h2>
+                <p class="section-subtitle">Simulate the real exam experience with these timed practice tests.</p>
+            </div>
+
+            <div class="exams-grid">
+                <!-- Practice Exam 1 -->
+                <div class="exam-card" id="exam-1-card">
+                    <div class="exam-card-header">
+                        <span class="exam-icon">📋</span>
+                        <div class="exam-difficulty">Intermediate</div>
+                    </div>
+                    <h3>Practice Exam 1: Core Concepts</h3>
+                    <p>Covers prompt engineering, Claude API fundamentals, and basic system design patterns.</p>
+                    <div class="exam-meta">
+                        <span>🕐 30 min</span>
+                        <span>📝 15 questions</span>
+                        <span>🎯 75% to pass</span>
+                    </div>
+                    <button class="btn btn-primary" id="start-exam-1-btn" onclick="startExam(1)">
+                        Start Exam 1
+                    </button>
+                </div>
+
+                <!-- Practice Exam 2 -->
+                <div class="exam-card" id="exam-2-card">
+                    <div class="exam-card-header">
+                        <span class="exam-icon">🏆</span>
+                        <div class="exam-difficulty difficulty-hard">Advanced</div>
+                    </div>
+                    <h3>Practice Exam 2: Architecture & MCP</h3>
+                    <p>Advanced topics including MCP implementation, multi-agent systems, safety, and production deployment.</p>
+                    <div class="exam-meta">
+                        <span>🕐 30 min</span>
+                        <span>📝 15 questions</span>
+                        <span>🎯 75% to pass</span>
+                    </div>
+                    <button class="btn btn-primary" id="start-exam-2-btn" onclick="startExam(2)">
+                        Start Exam 2
+                    </button>
+                </div>
+            </div>
+
+            <!-- Exam Modal -->
+            <div class="exam-modal hidden" id="exam-modal">
+                <div class="exam-modal-content">
+                    <div class="exam-header">
+                        <h3 id="exam-title"></h3>
+                        <div class="exam-timer" id="exam-timer">
+                            <span class="timer-icon">⏱️</span>
+                            <span id="timer-display">30:00</span>
+                        </div>
+                        <button class="exam-close-btn" id="exam-close-btn" onclick="closeExam()">✕</button>
+                    </div>
+                    <div class="exam-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="exam-progress-fill"></div>
+                        </div>
+                        <span id="exam-progress-text">Question 1 of 15</span>
+                    </div>
+                    <div class="exam-body">
+                        <div class="exam-question-area">
+                            <span class="exam-q-category" id="exam-q-category"></span>
+                            <h4 id="exam-question"></h4>
+                            <div class="quiz-options" id="exam-options"></div>
+                        </div>
+                        <div class="exam-nav">
+                            <button class="btn btn-secondary" id="exam-prev-btn">← Previous</button>
+                            <button class="btn btn-primary" id="exam-next-btn">Next →</button>
+                        </div>
+                    </div>
+                    <!-- Exam Results -->
+                    <div class="exam-results hidden" id="exam-results">
+                        <div class="results-score-ring">
+                            <svg viewBox="0 0 120 120">
+                                <circle cx="60" cy="60" r="54" class="ring-bg"></circle>
+                                <circle cx="60" cy="60" r="54" class="ring-fill" id="exam-score-ring"></circle>
+                            </svg>
+                            <div class="score-text">
+                                <span class="score-number" id="exam-score-number">0</span>
+                                <span class="score-percent">%</span>
+                            </div>
+                        </div>
+                        <h3 id="exam-result-status"></h3>
+                        <p id="exam-result-msg"></p>
+                        <div class="exam-answers-review" id="exam-answers-review"></div>
+                        <button class="btn btn-primary" onclick="closeExam()" style="margin-top:1.5rem;">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Concepts Explained -->
+    <section id="concepts" class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">💡 Learn</span>
+                <h2 class="section-title">Key AI <span class="gradient-text">Concepts</span> Explained</h2>
+                <p class="section-subtitle">Complex topics made simple through analogies and real-world examples.</p>
+            </div>
+
+            <div class="concepts-grid">
+                <!-- MCP -->
+                <div class="concept-card" id="concept-mcp">
+                    <div class="concept-icon-wrap">
+                        <span class="concept-icon">🔌</span>
+                    </div>
+                    <h3>Model Context Protocol (MCP)</h3>
+                    <div class="concept-analogy">
+                        <span class="analogy-label">🎭 Analogy</span>
+                        <p>
+                            Think of MCP like <strong>USB ports for AI</strong>. Just as USB provides a universal standard 
+                            for connecting any device (keyboard, mouse, printer) to any computer, MCP provides a universal 
+                            standard for connecting any tool (databases, APIs, file systems) to any AI model.
+                        </p>
+                    </div>
+                    <div class="concept-details">
+                        <h4>How It Works</h4>
+                        <p>
+                            MCP is an open protocol by Anthropic that standardizes how AI assistants connect to external data 
+                            sources and tools. Instead of building custom integrations for every tool, you build one MCP server, 
+                            and any MCP-compatible AI client can use it.
+                        </p>
+                        <div class="concept-example">
+                            <span class="example-label">💻 Example</span>
+                            <p>
+                                You build an MCP server for your GitHub repo. Now Claude, VS Code Copilot, or any MCP-compatible 
+                                assistant can read your code, create PRs, and manage issues — all through the same server.
+                            </p>
+                        </div>
+                        <div class="concept-certification">
+                            <span class="cert-label">🎓 Certification Path</span>
+                            <p>Covered in: <strong>Claude Certified Architect</strong> (Tool Use & MCP domain — 20% of exam)</p>
+                        </div>
+                    </div>
+                    <div class="concept-links">
+                        <a href="https://www.youtube.com/watch?v=kQHKOhJlSCg" target="_blank" class="yt-link">▶️ MCP Explained (YouTube)</a>
+                        <a href="https://modelcontextprotocol.io" target="_blank" class="doc-link">📄 Official MCP Docs</a>
+                        <a href="https://www.youtube.com/watch?v=wVgBhFRdLJM" target="_blank" class="yt-link">▶️ Build Your First MCP Server</a>
+                    </div>
+                </div>
+
+                <!-- LangChain -->
+                <div class="concept-card" id="concept-langchain">
+                    <div class="concept-icon-wrap">
+                        <span class="concept-icon">🔗</span>
+                    </div>
+                    <h3>LangChain</h3>
+                    <div class="concept-analogy">
+                        <span class="analogy-label">🎭 Analogy</span>
+                        <p>
+                            LangChain is like <strong>LEGO blocks for AI applications</strong>. Just as LEGO gives you 
+                            standardized bricks (wheels, doors, base plates) to build anything from a house to a spaceship, 
+                            LangChain gives you standardized components (prompts, chains, agents, memory) to build any AI app.
+                        </p>
+                    </div>
+                    <div class="concept-details">
+                        <h4>How It Works</h4>
+                        <p>
+                            LangChain is a framework that helps you "chain" together multiple AI operations. Want to take user input → 
+                            search a database → send results to an LLM → format the output? LangChain makes this pipeline easy to build, 
+                            test, and deploy.
+                        </p>
+                        <div class="concept-example">
+                            <span class="example-label">💻 Example</span>
+                            <p>
+                                Building a customer support bot: LangChain chains together → retrieve FAQ from vector database → 
+                                augment prompt with context → generate Claude response → log interaction. Each step is a reusable "block."
+                            </p>
+                        </div>
+                        <div class="concept-certification">
+                            <span class="cert-label">🎓 Certification Path</span>
+                            <p>Covered in: <strong>LangChain Certified Developer</strong> by LangChain Academy (free courses on langchain.academy)</p>
+                        </div>
+                    </div>
+                    <div class="concept-links">
+                        <a href="https://www.youtube.com/watch?v=lG7Uxts9SXs" target="_blank" class="yt-link">▶️ LangChain Crash Course</a>
+                        <a href="https://python.langchain.com/docs/get_started/introduction" target="_blank" class="doc-link">📄 LangChain Docs</a>
+                        <a href="https://www.youtube.com/watch?v=aywZrzNaKjs" target="_blank" class="yt-link">▶️ Build LangChain Apps</a>
+                    </div>
+                </div>
+
+                <!-- Model Drift -->
+                <div class="concept-card" id="concept-model-drift">
+                    <div class="concept-icon-wrap">
+                        <span class="concept-icon">📉</span>
+                    </div>
+                    <h3>Model Drift</h3>
+                    <div class="concept-analogy">
+                        <span class="analogy-label">🎭 Analogy</span>
+                        <p>
+                            Model Drift is like a <strong>compass slowly losing calibration</strong>. When you first buy a compass, 
+                            it points perfectly north. But over time, magnetic interference, wear, and environmental changes cause it 
+                            to drift off. Your AI model works the same way — it was accurate on training data, but the real world changes.
+                        </p>
+                    </div>
+                    <div class="concept-details">
+                        <h4>How It Works</h4>
+                        <p>
+                            Model drift occurs when an ML model's performance degrades over time because the real-world data 
+                            it encounters shifts away from the data it was trained on. There are two types: 
+                            <strong>Data Drift</strong> (input data distribution changes) and <strong>Concept Drift</strong> 
+                            (the relationship between inputs and outputs changes).
+                        </p>
+                        <div class="concept-example">
+                            <span class="example-label">💻 Example</span>
+                            <p>
+                                A fraud detection model trained in 2023 flags certain transaction patterns. By 2025, fraudsters 
+                                use completely new techniques. The model's accuracy drops from 95% to 70% — that's model drift. 
+                                You need to retrain or fine-tune with fresh data.
+                            </p>
+                        </div>
+                        <div class="concept-certification">
+                            <span class="cert-label">🎓 Certification Path</span>
+                            <p>Covered in: <strong>Google ML Engineering Certificate</strong>, <strong>AWS ML Specialty</strong>, and <strong>MLOps certifications</strong></p>
+                        </div>
+                    </div>
+                    <div class="concept-links">
+                        <a href="https://www.youtube.com/watch?v=VViqe2PFICQ" target="_blank" class="yt-link">▶️ Model Drift Explained</a>
+                        <a href="https://www.youtube.com/watch?v=i84MtaEMijw" target="_blank" class="yt-link">▶️ MLOps & Monitoring</a>
+                    </div>
+                </div>
+
+                <!-- RAG -->
+                <div class="concept-card" id="concept-rag">
+                    <div class="concept-icon-wrap">
+                        <span class="concept-icon">🔍</span>
+                    </div>
+                    <h3>RAG (Retrieval-Augmented Generation)</h3>
+                    <div class="concept-analogy">
+                        <span class="analogy-label">🎭 Analogy</span>
+                        <p>
+                            RAG is like an <strong>open-book exam</strong>. Instead of memorizing everything (like a base LLM), 
+                            you bring your reference books (vector database) and look up answers when needed. You combine your 
+                            understanding (the LLM) with fresh, relevant information (retrieved documents) to give the best answer.
+                        </p>
+                    </div>
+                    <div class="concept-details">
+                        <h4>How It Works</h4>
+                        <p>
+                            RAG enhances LLM responses by first retrieving relevant documents from a knowledge base, then 
+                            injecting them into the prompt context before generating a response. This keeps answers grounded, 
+                            up-to-date, and factually accurate.
+                        </p>
+                        <div class="concept-example">
+                            <span class="example-label">💻 Example</span>
+                            <p>
+                                A company chatbot answers HR questions by first searching the company policy database for relevant 
+                                sections, then feeding those sections to Claude along with the employee's question to generate an accurate answer.
+                            </p>
+                        </div>
+                        <div class="concept-certification">
+                            <span class="cert-label">🎓 Certification Path</span>
+                            <p>Covered in: <strong>Claude Certified Architect</strong>, <strong>LangChain Developer</strong>, and various <strong>GenAI certifications</strong></p>
+                        </div>
+                    </div>
+                    <div class="concept-links">
+                        <a href="https://www.youtube.com/watch?v=T-D1OfcDW1M" target="_blank" class="yt-link">▶️ RAG Explained Simply</a>
+                        <a href="https://www.youtube.com/watch?v=u47GtXwePms" target="_blank" class="yt-link">▶️ Build a RAG App</a>
+                    </div>
+                </div>
+
+                <!-- Fine-Tuning -->
+                <div class="concept-card" id="concept-finetuning">
+                    <div class="concept-icon-wrap">
+                        <span class="concept-icon">🎯</span>
+                    </div>
+                    <h3>Fine-Tuning</h3>
+                    <div class="concept-analogy">
+                        <span class="analogy-label">🎭 Analogy</span>
+                        <p>
+                            Fine-tuning is like <strong>teaching a general doctor to become a heart surgeon</strong>. The 
+                            doctor already has broad medical knowledge (pre-trained model). Through specialized training on 
+                            cardiac cases (your domain-specific data), they become an expert in heart surgery — without forgetting 
+                            general medicine.
+                        </p>
+                    </div>
+                    <div class="concept-details">
+                        <h4>How It Works</h4>
+                        <p>
+                            Fine-tuning takes a pre-trained model and further trains it on your specific dataset. This adapts the 
+                            model's behavior, writing style, or domain expertise without starting from scratch. It's more efficient 
+                            than training from zero but requires careful data preparation.
+                        </p>
+                        <div class="concept-example">
+                            <span class="example-label">💻 Example</span>
+                            <p>
+                                A legal firm fine-tunes an LLM on thousands of legal documents and court rulings. The fine-tuned 
+                                model now generates legal briefs in proper legal language and cites relevant precedents automatically.
+                            </p>
+                        </div>
+                        <div class="concept-certification">
+                            <span class="cert-label">🎓 Certification Path</span>
+                            <p>Covered in: <strong>Google ML Engineer</strong>, <strong>AWS ML Specialty</strong>, <strong>Hugging Face Certifications</strong></p>
+                        </div>
+                    </div>
+                    <div class="concept-links">
+                        <a href="https://www.youtube.com/watch?v=eC6Hd1hFvos" target="_blank" class="yt-link">▶️ Fine-Tuning LLMs Guide</a>
+                        <a href="https://www.youtube.com/watch?v=Q9zv369Envk" target="_blank" class="yt-link">▶️ When To Fine-Tune</a>
+                    </div>
+                </div>
+
+                <!-- Prompt Engineering -->
+                <div class="concept-card" id="concept-prompt-eng">
+                    <div class="concept-icon-wrap">
+                        <span class="concept-icon">✍️</span>
+                    </div>
+                    <h3>Prompt Engineering</h3>
+                    <div class="concept-analogy">
+                        <span class="analogy-label">🎭 Analogy</span>
+                        <p>
+                            Prompt engineering is like being a <strong>movie director giving instructions to an actor</strong>. 
+                            The actor (AI) is incredibly talented but needs clear direction. A vague "be sad" gets a generic 
+                            performance. But "remember losing your childhood home, let a single tear fall while smiling bravely" 
+                            gets an Oscar-worthy scene.
+                        </p>
+                    </div>
+                    <div class="concept-details">
+                        <h4>How It Works</h4>
+                        <p>
+                            Prompt engineering is the art and science of crafting inputs to AI models to get optimal outputs. 
+                            Techniques include system prompts, few-shot examples, chain-of-thought reasoning, role assignment, 
+                            and structured output formatting.
+                        </p>
+                        <div class="concept-example">
+                            <span class="example-label">💻 Example</span>
+                            <p>
+                                Instead of: "Summarize this article" → "You are an expert technical writer. Read the following 
+                                article and produce a 3-bullet executive summary. Each bullet should start with an action verb 
+                                and be under 20 words. Focus on business impact."
+                            </p>
+                        </div>
+                        <div class="concept-certification">
+                            <span class="cert-label">🎓 Certification Path</span>
+                            <p>Covered in: <strong>Claude Certified Architect</strong> (25% of exam), <strong>Google Prompting Essentials</strong></p>
+                        </div>
+                    </div>
+                    <div class="concept-links">
+                        <a href="https://www.youtube.com/watch?v=_ZvnD96BRkk" target="_blank" class="yt-link">▶️ Prompt Engineering Full Course</a>
+                        <a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview" target="_blank" class="doc-link">📄 Anthropic Prompt Guide</a>
+                    </div>
+                </div>
+
+                <!-- AI Agents -->
+                <div class="concept-card" id="concept-agents">
+                    <div class="concept-icon-wrap">
+                        <span class="concept-icon">🤖</span>
+                    </div>
+                    <h3>AI Agents</h3>
+                    <div class="concept-analogy">
+                        <span class="analogy-label">🎭 Analogy</span>
+                        <p>
+                            AI Agents are like having a <strong>personal assistant with a to-do list and a phone</strong>. 
+                            Instead of you doing every task manually, you tell the assistant your goal. They break it into steps, 
+                            use tools (phone calls, emails, web searches), handle errors, and report back when done — all autonomously.
+                        </p>
+                    </div>
+                    <div class="concept-details">
+                        <h4>How It Works</h4>
+                        <p>
+                            AI agents are LLM-powered systems that can reason, plan, and take actions autonomously. They use a 
+                            loop of Observe → Think → Act → Observe, calling external tools and APIs as needed to accomplish goals. 
+                            Frameworks like LangChain, CrewAI, and AutoGen help build them.
+                        </p>
+                        <div class="concept-example">
+                            <span class="example-label">💻 Example</span>
+                            <p>
+                                "Research competitor pricing and create a comparison report." The agent: searches the web → 
+                                extracts pricing data → organizes into a spreadsheet → writes analysis → emails the report — 
+                                all without human intervention.
+                            </p>
+                        </div>
+                        <div class="concept-certification">
+                            <span class="cert-label">🎓 Certification Path</span>
+                            <p>Covered in: <strong>Claude Certified Architect</strong>, <strong>CrewAI certification</strong>, <strong>LangChain Academy</strong></p>
+                        </div>
+                    </div>
+                    <div class="concept-links">
+                        <a href="https://www.youtube.com/watch?v=TRjq7t2Ms5I" target="_blank" class="yt-link">▶️ AI Agents Explained</a>
+                        <a href="https://www.youtube.com/watch?v=F8NKVhkZZWI" target="_blank" class="yt-link">▶️ Build AI Agents with Claude</a>
+                    </div>
+                </div>
+
+                <!-- Vector Databases -->
+                <div class="concept-card" id="concept-vectordb">
+                    <div class="concept-icon-wrap">
+                        <span class="concept-icon">🗃️</span>
+                    </div>
+                    <h3>Vector Databases & Embeddings</h3>
+                    <div class="concept-analogy">
+                        <span class="analogy-label">🎭 Analogy</span>
+                        <p>
+                            Vector databases are like a <strong>librarian who understands meaning, not just titles</strong>. 
+                            A regular database finds books by exact title match. A vector database understands that if you ask 
+                            for "heartbreak stories," it should return "Romeo and Juliet" even though "heartbreak" isn't in the title 
+                            — because it understands semantic similarity.
+                        </p>
+                    </div>
+                    <div class="concept-details">
+                        <h4>How It Works</h4>
+                        <p>
+                            Embeddings convert text into numerical vectors that capture meaning in multi-dimensional space. 
+                            Similar concepts end up close together. Vector databases (Pinecone, Weaviate, Chroma) store and 
+                            efficiently search these vectors using similarity algorithms like cosine similarity.
+                        </p>
+                        <div class="concept-example">
+                            <span class="example-label">💻 Example</span>
+                            <p>
+                                You embed 10,000 support tickets into vectors. When a new ticket comes in, the vector DB finds 
+                                the 5 most similar past tickets and their resolutions — even if they use completely different wording.
+                            </p>
+                        </div>
+                        <div class="concept-certification">
+                            <span class="cert-label">🎓 Certification Path</span>
+                            <p>Covered in: <strong>AWS GenAI Specialty</strong>, <strong>Google Cloud ML Engineer</strong>, various <strong>MLOps certifications</strong></p>
+                        </div>
+                    </div>
+                    <div class="concept-links">
+                        <a href="https://www.youtube.com/watch?v=dN0lsF2cvm4" target="_blank" class="yt-link">▶️ Vector Databases Explained</a>
+                        <a href="https://www.youtube.com/watch?v=ySus5ZS0b94" target="_blank" class="yt-link">▶️ Embeddings Crash Course</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources & Certification Pathways -->
+    <section id="resources" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">🗺️ Pathways</span>
+                <h2 class="section-title">Certification <span class="gradient-text-alt">Pathways</span> & Resources</h2>
+                <p class="section-subtitle">Your roadmap to AI certification success with curated courses and tutorials.</p>
+            </div>
+
+            <div class="pathways-grid">
+                <div class="pathway-card pathway-anthropic">
+                    <div class="pathway-header">
+                        <span class="pathway-logo">🟠</span>
+                        <h3>Anthropic</h3>
+                    </div>
+                    <div class="pathway-certs">
+                        <div class="cert-item">
+                            <h4>Claude Certified Architect</h4>
+                            <p>Design and deploy production Claude systems</p>
+                        </div>
+                    </div>
+                    <div class="pathway-resources">
+                        <h5>📚 Study Resources</h5>
+                        <a href="https://docs.anthropic.com" target="_blank">Anthropic Documentation</a>
+                        <a href="https://github.com/anthropics/courses" target="_blank">Anthropic Free Courses (GitHub)</a>
+                        <a href="https://www.youtube.com/watch?v=jvqFAi7vkBc" target="_blank">▶️ Claude API Full Tutorial</a>
+                        <a href="https://www.youtube.com/watch?v=kQHKOhJlSCg" target="_blank">▶️ MCP Protocol Deep Dive</a>
+                        <a href="https://www.youtube.com/watch?v=F8NKVhkZZWI" target="_blank">▶️ Building with Claude</a>
+                    </div>
+                </div>
+
+                <div class="pathway-card pathway-google">
+                    <div class="pathway-header">
+                        <span class="pathway-logo">🔵</span>
+                        <h3>Google Cloud</h3>
+                    </div>
+                    <div class="pathway-certs">
+                        <div class="cert-item">
+                            <h4>ML Engineer Certificate</h4>
+                            <p>Design, build, and productionize ML models</p>
+                        </div>
+                        <div class="cert-item">
+                            <h4>Google AI Essentials</h4>
+                            <p>Foundational AI skills for everyone</p>
+                        </div>
+                    </div>
+                    <div class="pathway-resources">
+                        <h5>📚 Study Resources</h5>
+                        <a href="https://www.cloudskillsboost.google/paths/17" target="_blank">Google Cloud ML Path</a>
+                        <a href="https://www.youtube.com/watch?v=cKxRvEZd3Mw" target="_blank">▶️ Google ML Crash Course (2024)</a>
+                        <a href="https://www.youtube.com/watch?v=WbzNRTTrX0g" target="_blank">▶️ Vertex AI Tutorial</a>
+                    </div>
+                </div>
+
+                <div class="pathway-card pathway-aws">
+                    <div class="pathway-header">
+                        <span class="pathway-logo">🟡</span>
+                        <h3>AWS</h3>
+                    </div>
+                    <div class="pathway-certs">
+                        <div class="cert-item">
+                            <h4>AWS ML Specialty</h4>
+                            <p>Design, implement, deploy ML solutions on AWS</p>
+                        </div>
+                        <div class="cert-item">
+                            <h4>AWS GenAI Specialty</h4>
+                            <p>Generative AI solutions with Bedrock & SageMaker</p>
+                        </div>
+                    </div>
+                    <div class="pathway-resources">
+                        <h5>📚 Study Resources</h5>
+                        <a href="https://aws.amazon.com/training/learn-about/machine-learning/" target="_blank">AWS ML Training</a>
+                        <a href="https://www.youtube.com/watch?v=uQc8Itd4UTs" target="_blank">▶️ AWS ML Cert Prep</a>
+                        <a href="https://www.youtube.com/watch?v=zVfEGFBx5nw" target="_blank">▶️ AWS Bedrock Tutorial</a>
+                    </div>
+                </div>
+
+                <div class="pathway-card pathway-langchain">
+                    <div class="pathway-header">
+                        <span class="pathway-logo">🦜</span>
+                        <h3>LangChain</h3>
+                    </div>
+                    <div class="pathway-certs">
+                        <div class="cert-item">
+                            <h4>LangChain Certified Developer</h4>
+                            <p>Build production LLM apps with LangChain</p>
+                        </div>
+                    </div>
+                    <div class="pathway-resources">
+                        <h5>📚 Study Resources</h5>
+                        <a href="https://academy.langchain.com" target="_blank">LangChain Academy (Free)</a>
+                        <a href="https://www.youtube.com/watch?v=lG7Uxts9SXs" target="_blank">▶️ LangChain Crash Course</a>
+                        <a href="https://www.youtube.com/watch?v=aywZrzNaKjs" target="_blank">▶️ LangChain Full Project</a>
+                        <a href="https://www.youtube.com/watch?v=HSZ_uaif57o" target="_blank">▶️ LangGraph Agents</a>
+                    </div>
+                </div>
+
+                <div class="pathway-card pathway-huggingface">
+                    <div class="pathway-header">
+                        <span class="pathway-logo">🤗</span>
+                        <h3>Hugging Face</h3>
+                    </div>
+                    <div class="pathway-certs">
+                        <div class="cert-item">
+                            <h4>NLP Course Certification</h4>
+                            <p>Transformers, fine-tuning, and NLP pipelines</p>
+                        </div>
+                    </div>
+                    <div class="pathway-resources">
+                        <h5>📚 Study Resources</h5>
+                        <a href="https://huggingface.co/learn/nlp-course" target="_blank">HF NLP Course (Free)</a>
+                        <a href="https://www.youtube.com/watch?v=QEaBAZQCtwE" target="_blank">▶️ Hugging Face Crash Course</a>
+                        <a href="https://www.youtube.com/watch?v=jkrNMKz9pWU" target="_blank">▶️ Transformers Explained</a>
+                    </div>
+                </div>
+
+                <div class="pathway-card pathway-mlops">
+                    <div class="pathway-header">
+                        <span class="pathway-logo">⚙️</span>
+                        <h3>MLOps</h3>
+                    </div>
+                    <div class="pathway-certs">
+                        <div class="cert-item">
+                            <h4>MLOps Engineering</h4>
+                            <p>CI/CD for ML, monitoring, drift detection</p>
+                        </div>
+                    </div>
+                    <div class="pathway-resources">
+                        <h5>📚 Study Resources</h5>
+                        <a href="https://mlops.community" target="_blank">MLOps Community</a>
+                        <a href="https://www.youtube.com/watch?v=i84MtaEMijw" target="_blank">▶️ MLOps Full Course</a>
+                        <a href="https://www.youtube.com/watch?v=s8Jkm_-CyaY" target="_blank">▶️ ML System Design</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- YouTube Playlists -->
+            <div class="youtube-section">
+                <h3 class="domains-title">🎬 Top YouTube Channels for AI Learning</h3>
+                <div class="yt-channels-grid">
+                    <a href="https://www.youtube.com/@AndrejKarpathy" target="_blank" class="yt-channel-card">
+                        <span class="yt-avatar">🎓</span>
+                        <h4>Andrej Karpathy</h4>
+                        <p>Former Tesla AI Director. Deep dives into neural networks, GPT, and AI fundamentals.</p>
+                    </a>
+                    <a href="https://www.youtube.com/@3blue1brown" target="_blank" class="yt-channel-card">
+                        <span class="yt-avatar">💙</span>
+                        <h4>3Blue1Brown</h4>
+                        <p>Beautiful visual explanations of math behind neural networks and transformers.</p>
+                    </a>
+                    <a href="https://www.youtube.com/@TwoMinutePapers" target="_blank" class="yt-channel-card">
+                        <span class="yt-avatar">📰</span>
+                        <h4>Two Minute Papers</h4>
+                        <p>Quick, exciting summaries of latest AI research papers and breakthroughs.</p>
+                    </a>
+                    <a href="https://www.youtube.com/@sentdex" target="_blank" class="yt-channel-card">
+                        <span class="yt-avatar">🐍</span>
+                        <h4>Sentdex</h4>
+                        <p>Practical Python AI/ML tutorials from basics to advanced projects.</p>
+                    </a>
+                    <a href="https://www.youtube.com/@StatQuestwithJoshStarmer" target="_blank" class="yt-channel-card">
+                        <span class="yt-avatar">📊</span>
+                        <h4>StatQuest</h4>
+                        <p>Josh Starmer breaks down statistics and ML concepts with humor and clarity.</p>
+                    </a>
+                    <a href="https://www.youtube.com/@YannicKilcher" target="_blank" class="yt-channel-card">
+                        <span class="yt-avatar">🧪</span>
+                        <h4>Yannic Kilcher</h4>
+                        <p>In-depth paper reviews and analysis of cutting-edge AI research.</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-icon">🧠</span>
+                    <span class="logo-text">AI Mastery Hub</span>
+                    <p>Your comprehensive guide to AI competency and certification.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#assessment">Assessment</a>
+                    <a href="#claude-architect">Claude Architect</a>
+                    <a href="#practice-exams">Practice Exams</a>
+                    <a href="#concepts">Concepts</a>
+                    <a href="#resources">Resources</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Built with ❤️ for AI learners everywhere · 2025</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
