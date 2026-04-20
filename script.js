@@ -980,7 +980,7 @@ function initScrollAnimations() {
         });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.section-header, .concept-card, .domain-card, .pathway-card, .exam-card, .yt-channel-card, .architect-hero-card, .timeline-item').forEach(el => {
+    document.querySelectorAll('.section-header, .concept-card, .domain-card, .pathway-card, .exam-card, .yt-channel-card, .architect-hero-card, .copilot-hero-card, .capability-card, .copilot-cert-card, .copilot-resource-card, .timeline-item').forEach(el => {
         observer.observe(el);
     });
 }

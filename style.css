@@ -1593,6 +1593,357 @@ body {
     font-size: 0.8rem;
 }
 
+/* --- Microsoft Copilot Studio Section --- */
+.copilot-badge {
+    color: #00a4ef !important;
+}
+
+.gradient-text-copilot {
+    background: linear-gradient(135deg, #00a4ef, #7fba00, #f25022);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.copilot-hero-card {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 48px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    padding: 48px;
+    margin-bottom: 60px;
+    position: relative;
+    overflow: hidden;
+}
+
+.copilot-hero-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #f25022, #ffb900, #7fba00, #00a4ef);
+}
+
+.copilot-badge-display {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.copilot-glow {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,164,239,0.15), transparent 70%);
+    animation: pulse 4s infinite ease-in-out;
+}
+
+.copilot-tier {
+    color: #00a4ef !important;
+}
+
+.copilot-info h3 {
+    font-size: 1.4rem;
+    margin-bottom: 16px;
+}
+
+.copilot-info > p {
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+    line-height: 1.8;
+}
+
+.copilot-highlights {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.highlight-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 14px;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-med);
+}
+
+.highlight-item:hover {
+    border-color: rgba(0,164,239,0.3);
+    background: rgba(0,164,239,0.04);
+}
+
+.highlight-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.highlight-item strong {
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+    color: var(--text-primary);
+}
+
+.highlight-item p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .copilot-hero-card {
+        grid-template-columns: 1fr;
+        padding: 32px;
+        gap: 32px;
+    }
+    .copilot-highlights {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Capabilities Grid */
+.copilot-capabilities {
+    margin-bottom: 60px;
+}
+
+.capabilities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.capability-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    transition: all var(--transition-med);
+    position: relative;
+    overflow: hidden;
+}
+
+.capability-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #00a4ef, #7fba00);
+    opacity: 0;
+    transition: opacity var(--transition-med);
+}
+
+.capability-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0,164,239,0.3);
+    box-shadow: 0 0 30px rgba(0,164,239,0.1);
+}
+
+.capability-card:hover::after {
+    opacity: 1;
+}
+
+.capability-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 14px;
+}
+
+.capability-card h4 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.capability-card p {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+/* Copilot Certifications */
+.copilot-certs {
+    margin-bottom: 60px;
+}
+
+.certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.copilot-cert-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    transition: all var(--transition-med);
+    position: relative;
+    overflow: hidden;
+}
+
+.copilot-cert-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+}
+
+.cert-applied::before { background: linear-gradient(180deg, #00a4ef, #0078d4); }
+.cert-maker::before { background: linear-gradient(180deg, #7fba00, #4caf50); }
+.cert-developer::before { background: linear-gradient(180deg, #f25022, #ff6b35); }
+.cert-admin::before { background: linear-gradient(180deg, #ffb900, #ffd93d); }
+
+.copilot-cert-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0,164,239,0.3);
+    box-shadow: 0 0 30px rgba(0,164,239,0.1);
+}
+
+.cert-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.cert-card-icon {
+    font-size: 1.8rem;
+}
+
+.cert-level {
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.level-fundamentals {
+    background: rgba(255,185,0,0.15);
+    color: #ffb900;
+}
+
+.level-intermediate {
+    background: rgba(0,164,239,0.15);
+    color: #00a4ef;
+}
+
+.level-associate {
+    background: rgba(127,186,0,0.15);
+    color: #7fba00;
+}
+
+.level-expert {
+    background: rgba(242,80,34,0.15);
+    color: #f25022;
+}
+
+.copilot-cert-card h4 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.cert-code {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--accent-2);
+    margin-bottom: 10px;
+}
+
+.copilot-cert-card > p:last-of-type {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.cert-status {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.cert-status.available {
+    background: rgba(0,212,170,0.1);
+    color: var(--accent-2);
+    border: 1px solid rgba(0,212,170,0.2);
+}
+
+.cert-status.upcoming {
+    background: rgba(255,185,0,0.1);
+    color: #ffb900;
+    border: 1px solid rgba(255,185,0,0.2);
+}
+
+/* Copilot Timeline Marker */
+.copilot-marker {
+    background: #00a4ef !important;
+}
+
+/* Copilot Resources Grid */
+.copilot-resources {
+    margin-top: 60px;
+}
+
+.copilot-resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.copilot-resource-card {
+    display: block;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    text-decoration: none;
+    transition: all var(--transition-med);
+}
+
+.copilot-resource-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0,164,239,0.3);
+    box-shadow: 0 0 30px rgba(0,164,239,0.1);
+}
+
+.cr-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.copilot-resource-card h4 {
+    color: var(--text-primary);
+    font-size: 1.05rem;
+    margin-bottom: 8px;
+}
+
+.copilot-resource-card p {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+
+/* Microsoft Pathway card */
+.pathway-microsoft::before { background: linear-gradient(90deg, #f25022, #ffb900, #7fba00, #00a4ef); }
+
 /* --- Scroll animations --- */
 .section-header,
 .concept-card,
@@ -1601,6 +1952,10 @@ body {
 .exam-card,
 .yt-channel-card,
 .architect-hero-card,
+.copilot-hero-card,
+.capability-card,
+.copilot-cert-card,
+.copilot-resource-card,
 .study-timeline .timeline-item {
     opacity: 0;
     transform: translateY(30px);
@@ -1614,6 +1969,10 @@ body {
 .exam-card.visible,
 .yt-channel-card.visible,
 .architect-hero-card.visible,
+.copilot-hero-card.visible,
+.capability-card.visible,
+.copilot-cert-card.visible,
+.copilot-resource-card.visible,
 .study-timeline .timeline-item.visible {
     opacity: 1;
     transform: translateY(0);
